@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
+import Sidebar from './component/Sidebar';
+import Linecharts from './component/charts/LInecharts';
+import { fetchchart } from './redux/slice/chartslice';
+import { useEffect } from 'react';
+import Horizontalbarchart from './component/charts/HorizontalBarchart';
+import VerticalBarchart from './component/charts/VerticalBarchart';
+import Mainchart from './component/charts/Mainchart';
+import CurrencyExchange from './component/CurrencyExchange';
 
 function App() {
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* <CurrencyExchange /> */}
+      {/* <Mainchart /> */}
+      <Sidebar />
     </div>
   );
 }

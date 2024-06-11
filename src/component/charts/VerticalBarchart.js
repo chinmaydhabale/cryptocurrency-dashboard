@@ -1,9 +1,6 @@
-import { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import React from 'react'
-import { useSelector, useDispatch } from "react-redux";
-// import { fetchchart } from "../../redux/slice/chartslice";
-import { setDay, setCurrency, setSelectedcurrency } from "../../redux/slice/defaulslice";
+import { useSelector } from "react-redux";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -28,26 +25,20 @@ ChartJS.register(
 );
 
 
-const VerticalBarchart = () => {
-
-    const dispatch = useDispatch()
-
+const VerticalBarchart = ({ chartdata }) => {
 
     const day = useSelector((state) => state.data.day)
-    const chartdata = useSelector((state) => state.chart.data)
+
+    const { prices } = chartdata
 
 
-
-
-    const coinchartvalue = chartdata.data.prices.map((value) => ({
+    const coinchartvalue = prices && prices.map((value) => ({
         x: value[0],
         y: value[1].toFixed(2),
     }));
 
 
-
-
-    const labels = coinchartvalue.map((val) => {
+    const labels = coinchartvalue && coinchartvalue.map((val) => {
         let date = new Date(val.x);
         let time =
             date.getHours() > 12
@@ -59,7 +50,6 @@ const VerticalBarchart = () => {
             year: "numeric"
         });
     })
-
 
     const options = {
         indexAxis: 'y',
@@ -82,7 +72,7 @@ const VerticalBarchart = () => {
         datasets: [
             {
                 label: 'Bitcoin',
-                data: coinchartvalue.map(val => val.y),
+                data: coinchartvalue && coinchartvalue.map(val => val.y),
                 borderColor: 'rgb(255, 99, 132)',
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
                 pointRadius: 0,
@@ -94,12 +84,9 @@ const VerticalBarchart = () => {
 
     return (
         <div>
-
-
             <div style={{ height: '500px' }}>
                 <Bar data={data} options={options} />
             </div>
-
         </div>
     )
 }

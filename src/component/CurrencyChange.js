@@ -1,21 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { setCurrency } from '../redux/slice/defaulslice';
+import { useDispatch } from 'react-redux';
 
 const CurrencyChange = () => {
 
-    const [selectedCurrency, setSelectedCurrency] = useState('USD');
-
-    const handleCurrencyChange = (event) => {
-        const selectedValue = event.target.value;
-        setSelectedCurrency(selectedValue);
-    };
+    const dispatch = useDispatch()
 
 
     return (
-        <div className="flex items-center pr-2">
+        <div className="flex pr-2 ">
             <select
-                className="border p-2 rounded-md"
-                value={selectedCurrency}
-                onChange={handleCurrencyChange}
+                className="border rounded-md p-2"
+                onChange={(e) => dispatch(setCurrency(e.target.value))}
             >
                 <option value="USD">USD</option>
                 <option value="INR">INR</option>

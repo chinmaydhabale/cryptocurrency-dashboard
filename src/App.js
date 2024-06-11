@@ -27,7 +27,7 @@ function App() {
           <div className='p-2 border'>
             <Mainchart />
           </div>
-          <div className='lg:flex flex-col gap-4'>
+          <div className='lg:flex lg:flex-row flex-col gap-4'>
             <div className='border w-full'>
               <MarketDominance />
             </div>
